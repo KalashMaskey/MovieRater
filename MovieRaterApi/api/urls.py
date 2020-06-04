@@ -8,6 +8,8 @@ router.register('movies',MovieViewSet)
 router.register('ratings',RatingViewSet)
 
 
+
+
 urlpatterns = [
     path('', include(router.urls)),
 ]
