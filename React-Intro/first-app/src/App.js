@@ -4,6 +4,9 @@ import './App.css';
 import HeaderEg from './components/headerEg';
 import FooterEg from './components/footerEg';
 import styled from 'styled-components';
+import Numbers from './components/numbers';
+
+
 
 function createAlert(){
   alert('Hello');
@@ -16,19 +19,14 @@ const pStyle = {
 
 const Paragraph = styled.p`
   font-size: 3em;
-  color: green;`;
+  color: green;
+  `;
 
 function App() {
   return (
-    <div className="App">
-        <p>
-          <HeaderEg info="Is generated with Props"
-            message="Props Example"/>
-        </p>
-        <p style={pStyle}>Some Content </p>
-        <Paragraph> NEW </Paragraph>
-        <FooterEg message="Class Props Example" myalert={createAlert}/>
-    </div>
+      <div className="App">
+        <Numbers />
+      </div>
   );
 }
 
