@@ -20,7 +20,7 @@ class MovieDetails extends Component {
           'Content-Type':'application/json',
           'Authorization':'Token 0f56baca21f825e81f8f8f8f4182690737176cd7'
         },
-        body: JSON.stringify({stars: stars + 1})
+        body: JSON.stringify({stars: stars  + 1})
       }).then( resp => resp.json())
         .then( res => this.getDetails())
         .catch(error => console.log(error))
