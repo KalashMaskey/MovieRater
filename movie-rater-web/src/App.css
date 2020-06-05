@@ -17,3 +17,15 @@
 .orange{
   color: orange;
 }
+
+.grey{
+  color: grey;
+}
+.rate-container{
+  border-top: 2px solid grey;
+}
+
+.rate-container span.fa{
+  font-size: 1em;
+  cursor: pointer;
+}

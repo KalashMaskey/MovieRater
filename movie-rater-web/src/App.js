@@ -16,7 +16,7 @@ import MovieDetails from './components/movie-details';
     fetch('http://127.0.0.1:8000/api/movies/', {
       method: 'GET',
       headers: {
-        'Authorization':'Token 413682aa1703c20a46123b90af510304e55b9cab'
+        'Authorization':'Token 0f56baca21f825e81f8f8f8f4182690737176cd7'
       }
     }).then( resp => resp.json())
       .then( res => this.setState({movies:res}))

@@ -59,6 +59,13 @@ CORS_ORIGIN_WHITELIST = (
     # '127.0.0.1:8000',
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':{
+        'rest_framework.permissions.IsAuthenticated',
+        
+    }
+}
+
 ROOT_URLCONF = 'movierater.urls'
 
 TEMPLATES = [
