@@ -16,14 +16,15 @@ import MovieDetails from './components/movie-details';
     fetch('http://127.0.0.1:8000/api/movies/', {
       method: 'GET',
       headers: {
-        'Authorization':'Token 0f56baca21f825e81f8f8f8f4182690737176cd7'
+        'Authorization':'Token 413682aa1703c20a46123b90af510304e55b9cab'
       }
     }).then( resp => resp.json())
       .then( res => this.setState({movies:res}))
       .catch(error => console.log(error))
   }
 
-  movieClicked = movie => {
+
+loadMovie = movie => {
     this.setState(
       { selectedMovie: movie }
     )
@@ -34,8 +35,8 @@ import MovieDetails from './components/movie-details';
           <div className="App">
               <h1>Movie Rater</h1>
               <div className="layout">
-                <MovieList movies={this.state.movies} movieClicked={this.movieClicked}/>
-                <MovieDetails movie={this.state.selectedMovie}/>
+                <MovieList movies={this.state.movies} movieClicked={this.loadMovie}/>
+                <MovieDetails movie={this.state.selectedMovie} updateMovie={this.loadMovie}/>
               </div>
           </div>
         );
