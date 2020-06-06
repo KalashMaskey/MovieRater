@@ -24,7 +24,7 @@ saveClicked=() => {
     method: 'POST',
     headers: {
       'Content-Type':'application/json',
-      'Authorization':'Token 0f56baca21f825e81f8f8f8f4182690737176cd7'
+      'Authorization':`Token ${this.state.token}`
     },
     body: JSON.stringify(this.state.editedMovie)
   }).then( resp => resp.json())
@@ -37,7 +37,7 @@ updateClicked=() => {
     method: 'PUT',
     headers: {
       'Content-Type':'application/json',
-      'Authorization':'Token 0f56baca21f825e81f8f8f8f4182690737176cd7'
+      'Authorization':`Token ${this.props.token}`
     },
     body: JSON.stringify(this.state.editedMovie)
   }).then( resp => resp.json())

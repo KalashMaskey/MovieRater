@@ -3,6 +3,7 @@ import './App.css';
 import MovieList from './components/movie-list';
 import MovieDetails from './components/movie-details';
 import MovieForm from './components/movie-form';
+import {withCookies} from 'react-cookie';
 var FontAwesome = require('react-fontawesome');
 
 
@@ -12,19 +13,24 @@ var FontAwesome = require('react-fontawesome');
   state = {
     movies: [] ,
     selectedMovie: null,
-    editedMovie: null
+    editedMovie: null,
+    token: this.props.cookies.get('mr-token')
   }
 
-  componentDidMount() {
-    //Fetch data
-    fetch('http://127.0.0.1:8000/api/movies/', {
-      method: 'GET',
-      headers: {
-        'Authorization':'Token 413682aa1703c20a46123b90af510304e55b9cab'
-      }
-    }).then( resp => resp.json())
-      .then( res => this.setState({movies:res}))
-      .catch(error => console.log(error))
+  componentDidMount(){
+    if(this.state.token){
+      fetch('http://127.0.0.1:8000/api/movies/', {
+        method: 'GET',
+        headers: {
+          'Authorization':`Token ${this.state.token}`
+        }
+      }).then( resp => resp.json())
+        .then( res => this.setState({movies:res}))
+        .catch(error => console.log(error))
+    } else {
+      window.location.href='/';
+    }
+
   }
 
 
@@ -61,13 +67,13 @@ addMovie = movie =>{
                 <span>Movie Rater</span>
               </h1>
               <div className="layout">
-                <MovieList movies={this.state.movies} movieClicked={this.loadMovie}
+                <MovieList movies={this.state.movies} movieClicked={this.loadMovie} token={this.state.token}
                 movieDeleted={this.movieDeleted} editClicked={this.editClicked} newMovie={this.newMovie}/>
                 <div>
                 { !this.state.editedMovie ?
-                  <MovieDetails movie={this.state.selectedMovie} updateMovie={this.loadMovie}/>
+                  <MovieDetails movie={this.state.selectedMovie} updateMovie={this.loadMovie} token={this.state.token}/>
                  : <MovieForm movie={this.state.editedMovie} cancelForm={this.cancelForm}
-                 newMovie={this.addMovie} editedMovie={this.loadMovie}/>}
+                 newMovie={this.addMovie} editedMovie={this.loadMovie} token={this.state.token}/>}
                 </div>
               </div>
           </div>
@@ -75,4 +81,4 @@ addMovie = movie =>{
       }
     }
 
-export default App;
+export default withCookies(App);
