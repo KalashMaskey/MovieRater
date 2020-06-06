@@ -48,6 +48,10 @@ newMovie = () =>{
 cancelForm = () =>{
   this.setState({editedMovie: null});
 }
+
+addMovie = movie =>{
+  this.setState({movies: [...this.state.movies, movie]});
+}
     render(){
         return (
           <div className="App">
@@ -58,7 +62,8 @@ cancelForm = () =>{
                 <div>
                 { !this.state.editedMovie ?
                   <MovieDetails movie={this.state.selectedMovie} updateMovie={this.loadMovie}/>
-                 : <MovieForm movie={this.state.editedMovie} cancelForm={this.cancelForm}/>}
+                 : <MovieForm movie={this.state.editedMovie} cancelForm={this.cancelForm}
+                 newMovie={this.addMovie} editedMovie={this.loadMovie}/>}
                 </div>
               </div>
           </div>
